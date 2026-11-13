@@ -7,6 +7,7 @@ module "workspace" {
   name   = "workspace"
 
   subnet_ids = var.private_subnet_ids
+
   vpc_settings = {
     vpc_id     = var.vpc_id
     subnet_ids = join(",", var.private_subnet_ids)
