@@ -41,7 +41,7 @@ See [`example/jumpcloud-sso`](example/jumpcloud-sso).
    - SAMLSubject NameID: `username`, format `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
    - IdP URL: for example `https://sso.jumpcloud.com/saml2/aws-workspaces` (this becomes `user_access_url`)
 
-   Save the app and export its **IdP metadata** XML.
+   Save the app and export its **IdP metadata** XML (see [`example/jumpcloud-sso/jumpcloud-metadata.example.xml`](example/jumpcloud-sso/jumpcloud-metadata.example.xml) for the expected format).
 2. **Terraform:** pass the metadata as `saml_metadata_document`, set `user_access_url` and `status` (`ENABLED`, or `ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK` while you roll it out), then apply.
 3. **JumpCloud:** finish the app configuration using the Terraform outputs:
    - Default RelayState: the `saml_relay_state` output

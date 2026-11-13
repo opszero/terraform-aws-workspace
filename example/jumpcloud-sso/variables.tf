@@ -15,7 +15,7 @@ variable "jumpcloud_sso_url" {
 
 variable "jumpcloud_metadata_file" {
   type        = string
-  description = "Path to the IdP metadata XML exported from the JumpCloud SSO app."
+  description = "Path to the IdP metadata XML exported from the JumpCloud SSO app (format: see jumpcloud-metadata.example.xml)."
 }
 
 variable "ad_password" {

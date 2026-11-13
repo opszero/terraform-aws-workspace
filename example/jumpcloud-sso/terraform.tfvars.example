@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and fill in real values.
+vpc_id             = "vpc-0123456789abcdef0"
+private_subnet_ids = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
+
+# IdP URL of the JumpCloud SSO app
+jumpcloud_sso_url = "https://sso.jumpcloud.com/saml2/aws-workspaces"
+
+# Metadata exported from JumpCloud; see jumpcloud-metadata.example.xml for the format
+jumpcloud_metadata_file = "jumpcloud-metadata.xml"
+
+# Prefer: export TF_VAR_ad_password=...
+# ad_password = ""

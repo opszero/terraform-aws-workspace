@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  EXAMPLE ONLY - not a working certificate.
+  Replace with the IdP metadata exported from your JumpCloud SSO app:
+  JumpCloud Admin Portal > SSO Applications > <your WorkSpaces app> > Export Metadata.
+  Save it as jumpcloud-metadata.xml (ignored by git) and point
+  jumpcloud_metadata_file at it.
+-->
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="jumpcloud-workspaces">
+  <md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>REPLACE_WITH_JUMPCLOUD_SIGNING_CERTIFICATE_BASE64</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso.jumpcloud.com/saml2/aws-workspaces"/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.jumpcloud.com/saml2/aws-workspaces"/>
+  </md:IDPSSODescriptor>
+</md:EntityDescriptor>
