@@ -1,6 +1,6 @@
 # Output for the VPC ID
 output "vpc_id" {
-  value       = module.vpc.id
+  value       = module.vpc.vpc_id
   description = "The ID of the created VPC"
 }
 

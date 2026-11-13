@@ -224,13 +224,18 @@ variable "relay_state_parameter_name" {
 }
 
 variable "status" {
-  description = "Status of SAML 2.0 authentication."
+  description = "Status of SAML 2.0 authentication: DISABLED, ENABLED (SSO only) or ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK (SSO plus directory username/password)."
   type        = string
   default     = "DISABLED"
+
+  validation {
+    condition     = contains(["DISABLED", "ENABLED", "ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK"], var.status)
+    error_message = "status must be DISABLED, ENABLED or ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK."
+  }
 }
 
 variable "user_access_url" {
-  description = "The SAML 2.0 identity provider (IdP) user access URL."
+  description = "The SAML 2.0 identity provider (IdP) user access URL. For JumpCloud this is the IdP URL of the WorkSpaces SSO app, e.g. https://sso.jumpcloud.com/saml2/<app-slug>."
   type        = string
   default     = "https://idp.example.com/saml" # Replace with your actual URL
 }
@@ -257,4 +262,22 @@ variable "permissions_boundary" {
   description = "ARN of the policy that is used to set the permissions boundary for the role."
   type        = string
   default     = ""
+}
+
+variable "saml_metadata_document" {
+  description = "SAML IdP metadata XML (e.g. downloaded from the JumpCloud SSO app). When set, an IAM SAML provider and a federation role for WorkSpaces are created."
+  type        = string
+  default     = null
+}
+
+variable "saml_provider_name" {
+  description = "Name for the IAM SAML provider and federation role. Defaults to \"<name>-workspaces-saml\"."
+  type        = string
+  default     = null
+}
+
+variable "saml_name_id_format" {
+  description = "Expected SAML NameID format (SAML:sub_type) in the role trust policy. Configure the IdP to send this format; the NameID value must match the WorkSpaces user name."
+  type        = string
+  default     = "persistent"
 }

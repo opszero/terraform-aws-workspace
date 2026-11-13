@@ -46,3 +46,28 @@ output "user_access_url" {
   value       = aws_workspaces_directory.main.saml_properties[0].user_access_url
   description = "The user access URL for the SAML 2.0 identity provider (IdP)."
 }
+
+output "saml_provider_arn" {
+  value       = try(aws_iam_saml_provider.workspaces[0].arn, null)
+  description = "ARN of the IAM SAML provider, if SSO is configured."
+}
+
+output "saml_role_arn" {
+  value       = try(aws_iam_role.saml[0].arn, null)
+  description = "ARN of the WorkSpaces SAML federation role, if SSO is configured."
+}
+
+output "saml_role_attribute" {
+  value       = try("${aws_iam_role.saml[0].arn},${aws_iam_saml_provider.workspaces[0].arn}", null)
+  description = "Value for the IdP attribute https://aws.amazon.com/SAML/Attributes/Role (role ARN,provider ARN)."
+}
+
+output "registration_code" {
+  value       = aws_workspaces_directory.main.registration_code
+  description = "WorkSpaces directory registration code."
+}
+
+output "saml_relay_state" {
+  value       = "https://workspaces.euc-sso.${data.aws_region.current.region}.aws.amazon.com/sso-idp?registrationCode=${aws_workspaces_directory.main.registration_code}"
+  description = "Relay state URL to configure in the IdP (JumpCloud) SSO app."
+}

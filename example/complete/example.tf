@@ -23,7 +23,7 @@ module "subnets" {
   name                = "subnet"
   environment         = "workspace-subnet"
   availability_zones  = ["eu-west-1a", "eu-west-1b", ]
-  vpc_id              = module.vpc.id
+  vpc_id              = module.vpc.vpc_id
   type                = "public-private"
   nat_gateway_enabled = true
   single_nat_gateway  = true
@@ -38,7 +38,7 @@ module "workspace" {
   ##ad
   subnet_ids = module.subnets.private_subnet_id
   vpc_settings = {
-    vpc_id     = module.vpc.id
+    vpc_id     = module.vpc.vpc_id
     subnet_ids = join(",", module.subnets.private_subnet_id)
   }
 
@@ -49,7 +49,7 @@ module "workspace" {
   user_enabled_as_local_administrator = true
 
   ##workspace
-  enable_workspace    = false
+  enable_workspace = false
   // first run terraform apply with enable_workspace = false and then create custom user names in workspace manually and specify here that username and re-run tf apply with enable_workspace = true so that workspace with custom-username gets created .
 
   workspaces = {
