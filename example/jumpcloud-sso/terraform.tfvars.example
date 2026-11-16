@@ -1,6 +1,14 @@
 # Copy to terraform.tfvars and fill in real values.
+region = "us-east-2"
+
+# Ubuntu 26.04 LTS bundle for the region:
+#   aws workspaces describe-workspace-bundles --owner AMAZON --region us-east-2 \
+#     --query "Bundles[?contains(Name,'Ubuntu') && contains(Name,'26.04')].[BundleId,Name,ComputeType.Name]" --output table
+bundle_id         = "wsb-xxxxxxxxx"
+compute_type_name = "STANDARD"
+
 vpc_id             = "vpc-0123456789abcdef0"
-private_subnet_ids = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
+subnet_ids         = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
 
 # IdP URL of the JumpCloud SSO app
 jumpcloud_sso_url = "https://sso.jumpcloud.com/saml2/aws-workspaces"

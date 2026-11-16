@@ -1,11 +1,28 @@
+variable "region" {
+  type        = string
+  default     = "us-east-2"
+  description = "AWS region. Must match the region of vpc_id and support WorkSpaces SAML 2.0."
+}
+
+variable "bundle_id" {
+  type        = string
+  description = "WorkSpaces bundle ID, e.g. the Amazon Ubuntu 26.04 LTS bundle for the region (aws workspaces describe-workspace-bundles --owner AMAZON)."
+}
+
+variable "compute_type_name" {
+  type        = string
+  default     = "STANDARD"
+  description = "Compute type; must match the bundle. Ubuntu bundles have no VALUE size."
+}
+
 variable "vpc_id" {
   type        = string
   description = "VPC to place the directory and WorkSpaces in."
 }
 
-variable "private_subnet_ids" {
+variable "subnet_ids" {
   type        = list(string)
-  description = "Two private subnets in different AZs."
+  description = "Two subnets in different AZs (WorkSpaces-supported AZ IDs). Private subnets with a NAT route, or public subnets with an IGW route and enable_internet_access = true."
 }
 
 variable "jumpcloud_sso_url" {

@@ -1,19 +1,19 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 module "workspace" {
   source = "../../"
   name   = "workspace"
 
-  subnet_ids = var.private_subnet_ids
+  subnet_ids = var.subnet_ids
 
   vpc_settings = {
     vpc_id     = var.vpc_id
-    subnet_ids = join(",", var.private_subnet_ids)
+    subnet_ids = join(",", var.subnet_ids)
   }
 
-  ad_name     = "corp.example.com"
+  ad_name      = "corp.example.com"
   ad_password = var.ad_password
 
   # JumpCloud SAML 2.0 SSO
@@ -26,8 +26,9 @@ module "workspace" {
   workspaces = {
     jdoe = {
       # Must match the NameID JumpCloud sends (the JumpCloud username).
-      user_name = "jdoe"
-      bundle_id = "wsb-208l8k46h"
+      user_name         = "jdoe"
+      bundle_id         = var.bundle_id
+      compute_type_name = var.compute_type_name
     }
   }
 }

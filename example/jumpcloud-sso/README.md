@@ -26,7 +26,7 @@ and sets `saml_properties` on the WorkSpaces directory (`status`, `user_access_u
 
 - Terraform >= 1.15.8, AWS provider >= 6.58.0
 - An AWS profile with permission for Directory Service, WorkSpaces and IAM
-- A VPC with two private subnets in different AZs, in a [region that supports WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/azs-workspaces.html)
+- A VPC with two subnets in different AZs (private with NAT, or public with an Internet Gateway), in a [region that supports WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/azs-workspaces.html)
 - JumpCloud admin access
 
 ## Step 1: Create the JumpCloud SSO app
@@ -49,7 +49,7 @@ Save, then **Export Metadata** and save the file here as `jumpcloud-metadata.xml
 ## Step 2: Configure and apply Terraform
 
 ```sh
-cp terraform.tfvars.example terraform.tfvars   # fill in vpc_id, private_subnet_ids, jumpcloud_sso_url
+cp terraform.tfvars.example terraform.tfvars   # fill in vpc_id, subnet_ids, jumpcloud_sso_url
 export TF_VAR_ad_password='<strong directory admin password>'
 export AWS_PROFILE=<profile>
 
