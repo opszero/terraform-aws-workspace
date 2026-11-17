@@ -10,6 +10,9 @@ compute_type_name = "STANDARD"
 vpc_id             = "vpc-0123456789abcdef0"
 subnet_ids         = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
 
+# Client CIDRs allowed to connect (office / VPN egress IPs)
+ip_whitelist = ["198.51.100.10/32"]
+
 # IdP URL of the JumpCloud SSO app
 jumpcloud_sso_url = "https://sso.jumpcloud.com/saml2/aws-workspaces"
 

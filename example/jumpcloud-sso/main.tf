@@ -13,8 +13,11 @@ module "workspace" {
     subnet_ids = join(",", var.subnet_ids)
   }
 
-  ad_name      = "corp.example.com"
+  ad_name     = "corp.example.com"
   ad_password = var.ad_password
+
+  # Client CIDRs allowed to connect
+  ip_whitelist = var.ip_whitelist
 
   # JumpCloud SAML 2.0 SSO
   saml_metadata_document     = file(var.jumpcloud_metadata_file)

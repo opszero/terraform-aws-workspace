@@ -61,7 +61,7 @@ See [`example/jumpcloud-sso`](example/jumpcloud-sso).
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_ad_name"></a> [ad\_name](#input\_ad\_name) | The fully qualified name for the directory, such as corp.example.com | `string` | `"corp.example.com"` | no |
-| <a name="input_ad_password"></a> [ad\_password](#input\_ad\_password) | The password for the directory administrator or connector user. | `string` | `"xyzsf58f5fqar"` | no |
+| <a name="input_ad_password"></a> [ad\_password](#input\_ad\_password) | The password for the directory administrator or connector user. | `string` | n/a | yes |
 | <a name="input_ad_size"></a> [ad\_size](#input\_ad\_size) | The size of the directory (Small or Large are accepted values). | `string` | `"Small"` | no |
 | <a name="input_alias"></a> [alias](#input\_alias) | The directory type (SimpleAD, ADConnector or MicrosoftAD are accepted values). | `string` | `""` | no |
 | <a name="input_change_compute_type"></a> [change\_compute\_type](#input\_change\_compute\_type) | Whether WorkSpaces directory users can change the compute type (bundle) for their workspace. | `bool` | `true` | no |
@@ -83,7 +83,7 @@ See [`example/jumpcloud-sso`](example/jumpcloud-sso).
 | <a name="input_enable_workspace"></a> [enable\_workspace](#input\_enable\_workspace) | Flag to control the module creation. | `bool` | `false` | no |
 | <a name="input_force_detach_policies"></a> [force\_detach\_policies](#input\_force\_detach\_policies) | Whether to force detaching any policies the role has before destroying it. | `bool` | `false` | no |
 | <a name="input_increase_volume_size"></a> [increase\_volume\_size](#input\_increase\_volume\_size) | Whether WorkSpaces directory users can increase the volume size of the drives on their workspace. | `bool` | `true` | no |
-| <a name="input_ip_whitelist"></a> [ip\_whitelist](#input\_ip\_whitelist) | List of IP's to for whitelist | `list(string)` | <pre>[<br/>  "103.59.207.249/32"<br/>]</pre> | no |
+| <a name="input_ip_whitelist"></a> [ip\_whitelist](#input\_ip\_whitelist) | Client CIDRs allowed to connect to WorkSpaces (IP access control group). | `list(string)` | n/a | yes |
 | <a name="input_max_session_duration"></a> [max\_session\_duration](#input\_max\_session\_duration) | Maximum session duration (in seconds) for the specified role. | `number` | `3600` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | <a name="input_path"></a> [path](#input\_path) | Path to the role. | `string` | `"/"` | no |

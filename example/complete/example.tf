@@ -43,7 +43,7 @@ module "workspace" {
   }
 
   ad_name                             = "ad.workspace.com"
-  ad_password                         = "xyz123@abc"
+  ad_password                         = var.ad_password
   ip_whitelist                        = ["0.0.0.0/0"]
   enable_internet_access              = true
   user_enabled_as_local_administrator = true
