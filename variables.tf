@@ -43,7 +43,6 @@ variable "ad_name" {
 }
 
 variable "ad_password" {
-  default     = "xyzsf58f5fqar"
   type        = string
   description = "The password for the directory administrator or connector user."
   sensitive   = true
@@ -56,9 +55,8 @@ variable "ad_size" {
 }
 
 variable "ip_whitelist" {
-  default     = ["103.59.207.249/32"]
   type        = list(string)
-  description = "List of IP's to for whitelist"
+  description = "Client CIDRs allowed to connect to WorkSpaces (IP access control group)."
 }
 
 variable "custom_policy" {

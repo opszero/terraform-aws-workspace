@@ -39,3 +39,8 @@ variable "ad_password" {
   type      = string
   sensitive = true
 }
+
+variable "ip_whitelist" {
+  type        = list(string)
+  description = "Client CIDRs allowed to connect to WorkSpaces."
+}
